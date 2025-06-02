@@ -5,9 +5,9 @@ import { authOptions } from "../../lib/auth"
 export const GET = async () => {
     const session = await getServerSession(authOptions);
     if (session){
-        return {
+        return NextResponse.json({
             user: session.user
-        }
+        })
     }return NextResponse.json({
         Message: "You are not logged in!"
     },{
