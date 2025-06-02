@@ -1,8 +1,6 @@
 import CredentialsProvider from "next-auth/providers/credentials"
 import bcrypt from "bcrypt";
 import db from "@repo/db/client"
-import { env } from "process";
-import { AsyncCallbackSet } from "next/dist/server/lib/async-callback-set";
 
 export const authOptions = {
     providers:[
