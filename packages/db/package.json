@@ -13,7 +13,8 @@
     "prisma": "^6.8.2"
   },
   "dependencies": {
-    "@prisma/client": "^6.8.2"
+    "@prisma/client": "^6.8.2",
+    "bcrypt": "^6.0.0"
   },
   "exports": {
     "./client": "./index.ts"
@@ -22,5 +23,3 @@
     "seed": "ts-node prisma/seed.ts"
   }
 }
-
-
