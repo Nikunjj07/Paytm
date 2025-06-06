@@ -4,7 +4,6 @@ export const OnRampTransactions = ({
     transactions
 }: {
     transactions: {
-        id: number
         time: Date,
         amount: number,
         // TODO: Can the type of `status` be more specific?
