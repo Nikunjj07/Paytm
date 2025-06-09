@@ -2,16 +2,38 @@ import express from "express";
 import db from "@repo/db/client"
 
 const app = express();
+app.use(express.json())
 
-app.post('/hdfcWebHook', (req,res)=>{
-    const paymentInformatin = {
-        token: req.body.token,
-        userId: req.body.user_identifier,
-        amount: req.body.amount
+app.post('/hdfcWebHook', async (req,res)=>{
+    const body = req.body;
+
+    const paymentInformatin:{
+        token:string,
+        userId:number,
+        amount:number
+    } = {
+        token: body.token,
+        userId: body.user_identifier,
+        amount: body.amount
     };
 
+    const transactionStatus = await db.onRampTransaction.findFirst({
+        where:{
+            token:paymentInformatin.token
+        },select:{
+            status: true
+        }
+    })
+
+    if(transactionStatus?.status !== "Processing"){
+        return res.status(409).json({
+            message:"Transaction already executed"
+        })
+    }
+
+
     try{
-        db.$transaction([
+        await db.$transaction([
             db.balance.update({
             where:{
                 userId: paymentInformatin.userId
