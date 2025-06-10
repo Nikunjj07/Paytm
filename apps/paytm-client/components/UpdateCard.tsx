@@ -11,7 +11,7 @@ export function UpdateCard(){
         <div className="w-full flex flex-row justify-center">
                 <div className="p-6 border-2 rounded-xl">
                     
-                    <h1 className="mb-4 text-3xl font-extrabold text-gray-900 md:text-5xl lg:text-6xl">
+                    <h1 className="mb-4 text-3xl font-extrabold text-gray-900 md:text-5xl lg:text-3xl">
                         <span className="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">
                             Update Details
                         </span>
