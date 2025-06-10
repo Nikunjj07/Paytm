@@ -59,6 +59,10 @@ export const authOptions = {
             session.user.id = token.sub
 
             return session
+        },
+        pages:{
+            signIn:"/auth/singin",
+            signOut:"/auth/signout"
         }
     }
   }
