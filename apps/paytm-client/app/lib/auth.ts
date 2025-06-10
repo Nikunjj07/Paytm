@@ -5,14 +5,14 @@ import bcrypt from "bcrypt";
 export const authOptions = {
     providers: [
       CredentialsProvider({
-          name: 'Credentials',
-          credentials: {
+        name: 'Credentials',
+        credentials: {
             
             phone: { label: "Phone number", type: "text", placeholder: "1231231231", required: true },
             password: { label: "Password", type: "password", required: true }
-          },
+        },
           // TODO: User credentials type from next-aut
-          async authorize(credentials: any) {
+        async authorize(credentials: any) {
             // Do zod validation, OTP validation here
             const hashedPassword = await bcrypt.hash(credentials.password, 10);
             const existingUser = await db.user.findFirst({
@@ -27,7 +27,8 @@ export const authOptions = {
                     return {
                         id: existingUser.id.toString(),
                         name: existingUser.name,
-                        email: existingUser.number
+                        number:existingUser.number,
+                        email: existingUser.email
                     }
                 }
                 return null;
@@ -51,7 +52,7 @@ export const authOptions = {
             }
 
             return null
-          },
+        },
         })
     ],
     secret: process.env.JWT_SECRET || "secret",
