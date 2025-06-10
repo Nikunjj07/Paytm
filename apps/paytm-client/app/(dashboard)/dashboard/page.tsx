@@ -1,11 +1,10 @@
 import { getServerSession } from "next-auth"
 import { authOptions } from "../../lib/auth"
-import prisma from "@repo/db/client";
-import { AsyncCallbackSet } from "next/dist/server/lib/async-callback-set";
 
 export default async()=>{
     const session = await getServerSession(authOptions);
-    const user = session.user.name;
+    console.log(session.user)
+    const user = session.user.name || session.user.email;
     return(
         <div className="">
             

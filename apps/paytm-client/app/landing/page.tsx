@@ -1,4 +1,12 @@
-export default function(){
+import { getServerSession } from "next-auth"
+import { authOptions } from "../lib/auth"
+import { redirect } from "next/navigation";
+
+export default async function(){
+    const session = await getServerSession(authOptions);
+    if(session?.user){
+        redirect('/dashboard')
+    }
     return <div className="p-4">
         <div className="h-screen w-3/4 p-6 bg-blue-100 rounded-4xl pt-20">
             <div className="text-6xl font-bold italic">
