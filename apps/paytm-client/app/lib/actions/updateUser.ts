@@ -12,13 +12,19 @@ export default async function updateUser(name:string,email:string){
             message: "not logged in"
         })
     }
+    
     await prisma.user.update({
         where: {
-            number: session.number
+            id: Number(session.user.id)
         },
         data:{
             name:name,
             email:email
         }
+    })
+    
+    console.log(session.user)
+    return NextResponse.json({
+        message:"user updated successfully"
     })
 }

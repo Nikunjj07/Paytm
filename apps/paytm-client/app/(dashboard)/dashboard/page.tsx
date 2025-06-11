@@ -2,9 +2,8 @@ import { getServerSession } from "next-auth"
 import { authOptions } from "../../lib/auth"
 
 export default async()=>{
-    const session = await getServerSession(authOptions);
-    console.log(session.user)
-    const user = session.user.name || session.user.email;
+    const session = await getServerSession(authOptions);//
+    const user = session.user.name || session.user.email || "User";
     return(
         <div className="">
             
