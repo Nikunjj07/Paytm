@@ -5,7 +5,7 @@ export const TransactionsCard = ({transactions}:{
         timestamp: Date,
         amount:number,
         // TODO: Can the type of `status` be more specific?
-        toUser: string
+        toUser: number
     }[]
 })=>{
     if (!transactions) {
