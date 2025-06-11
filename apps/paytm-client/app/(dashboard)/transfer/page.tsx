@@ -4,6 +4,8 @@ import { BalanceCard } from "../../../components/BalanceCard";
 import { OnRampTransactions } from "../../../components/OnRampTransactions";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../../lib/auth";
+import { DateTime } from "next-auth/providers/kakao";
+
 
 async function getBalance() {
     const session = await getServerSession(authOptions);
@@ -25,12 +27,20 @@ async function getOnRampTransactions() {
             userId: Number(session?.user?.id)
         }
     });
-    return txns.map(t => ({
+    return (txns.map((t:{
+        id: number;
+        token: string;
+        userId: number;
+        amount: number;
+        status: string;
+        provider: string;
+        startTime: Date;
+    }) => ({
         time: t.startTime,
         amount: t.amount,
         status: t.status,
         provider: t.provider
-    }))
+    })))
 }
 
 export default async function() {

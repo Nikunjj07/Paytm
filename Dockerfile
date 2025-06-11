@@ -1,15 +1,15 @@
-FROM node:20.12.0-alpine3.19
+FROM node:latest
 
 WORKDIR /usr/src/app
 
-COPY package.json package-lock.json turbo.json  ./
+COPY package.json package-lock.json turbo.json tsconfig.json ./
 
 COPY apps ./apps
 COPY packages ./packages
 
 RUN npm install
 
-RUN npm run db:generate
+RUN cd packages/db && npx prisma migrate && cd ../..
 
 # Can you filter the build down to just one app?
 RUN npm run build
