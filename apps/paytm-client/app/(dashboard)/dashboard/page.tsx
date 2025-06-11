@@ -13,7 +13,7 @@ export default async()=>{
                 </span>
                 {user}
             </h1>
-
         </div>
+        
     )
 }
