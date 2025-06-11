@@ -11,7 +11,7 @@ async function getTransactions(){
             fromUserId:Number(session.user.id)
         }
     })
-    return trans.map(t => ({
+    return trans.map((t:{ timestamp: Date; amount: number; toUserId: number }) => ({
         timestamp: t.timestamp,
         amount: t.amount,
         toUser: t.toUserId
