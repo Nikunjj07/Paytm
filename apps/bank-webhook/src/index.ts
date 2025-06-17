@@ -20,7 +20,7 @@ app.post('/hdfcWebHook', async (req,res)=>{
     const transactionStatus = await db.onRampTransaction.findFirst({
         where:{
             token:paymentInformatin.token
-        },select:{
+        },select:{ 
             status: true
         }
     })
